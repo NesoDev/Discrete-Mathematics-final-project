@@ -1,0 +1,12 @@
+.container-menu-map-section {
+    position: relative;
+    bottom: -30px;
+    display: flex;
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 95%;
+}

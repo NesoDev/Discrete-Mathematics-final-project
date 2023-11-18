@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>NesoApps</title>
+    <link rel="icon" type="image/png" href="../static/images/rin_pixel_art.png">
+    <link rel="stylesheet" href="../static/styles/general.css">
+    <link rel="stylesheet" href="../static/styles/container.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/container-register.css">
+    <link rel="stylesheet" href="../static/styles/css-route-search-san-marcos/container-menu-map-section.css">
+    <link rel="stylesheet" href="../static/styles/css-route-search-san-marcos/container-map-section.css">
+    <link rel="stylesheet" href="../static/styles/css-route-search-san-marcos/container-menu-section.css">
+
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="logo-nesoApp">
+            <h1>NesoApps</h1>
+            <img src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1695615863/HonokaPy_gkyaud.png"
+                id="logo-honky-py" alt="logo-nesoApp">
+        </div>
+        <div class="name-app">
+            <h2>RUTA MÍNIMA 🚀</h2>
+        </div>
+    </header>
+
+    <section class="container">
+        <!--<div class="container-step-text">Elija un origen y llegada para ver la menor ruta<span class="emoji">✨</span></div>-->
+        <div class="container-menu-map-section">
+            <div class="container-menu-section">
+                <select id="select-start-locate" class="select-start-locate" name="select-start-locate" required>
+                    <!-- Opciones del selector de origen -->
+                    <option value="" disabled selected>Seleccione su origen</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+
+                <select id="select-end-locate" class="select-end-locate" name="select-end-locate" required>
+                    <!-- Opciones del selector de destino -->
+                    <option value="" disabled selected>Seleccione su destino</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+                <input type="submit" class="button-show-map" value="Ver mapa UNMSM">
+                <input type="submit" class="button-upload-json" value="Cargar GeoJson">
+                <input type="submit" class="button-search-route" value="Buscar ruta">
+            </div>
+            <div id="map" class="map-container"></div>
+            <div id="vis-container" class="canvas-container" style="display: none;"></div>
+        </div>
+    </section>
+    <script>
+        var homeRoute = "{{ url_for('home') }}"
+        // Obtén la referencia a la imagen por su ID
+        var logoNesoApp = document.querySelector(".logo-nesoApp");
+        // Agrega un evento de clic a la imagen para redireccionar a la página de inicio
+        logoNesoApp.addEventListener("click", function () {
+            window.location.href = homeRoute;
+        });
+    </script>
+    <script src="../static/scripts/js-route-search-san-marcos/api-map-box.js" type="module"></script>
+    <script src="../static/scripts/js-route-search-san-marcos/main.js" type="module"></script>
+</body>
+
+</html>

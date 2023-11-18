@@ -1,0 +1,41 @@
+.container-schedule {
+    width: 100%;
+    min-width: 750px;
+    height: auto;
+    background: #030303;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.table-schedule {
+    border: none;
+    border-spacing: 3px;
+    width: 100%;
+    height: auto;
+    font-size: 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-schedule {
+    width: 60px;
+    padding: 8px;
+    border-radius: 0.2rem;
+    background: #252525;
+    color: white;
+}
+
+.container-class {
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 0.2rem;
+    padding: 0 10px 0 10px;
+}
+
+.container-hours-lapse {
+    border: 1px solid black;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+}

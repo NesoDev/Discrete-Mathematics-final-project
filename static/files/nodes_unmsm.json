@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "name": "Facultad de Ingenieria en Sistemas e Informática",
+        "entrances": [
+            {
+                "position": [-77.08571748750853, -12.053674246767855]
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Puerta 2",
+        "entrances": [
+            {
+                "position": [-77.07965746774524, -12.059500283486685]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Clínica Universitaria",
+        "entrances": [
+            {
+                "position": [-77.08214323765738, -12.055620215860728]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Facultad de Educación",
+        "entrances": [
+            {
+                "position": [-77.0851315838208, -12.055464489189447]
+            }
+        ]
+    }
+]

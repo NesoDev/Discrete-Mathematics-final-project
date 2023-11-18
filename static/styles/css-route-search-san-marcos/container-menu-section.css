@@ -1,0 +1,85 @@
+.container-menu-section {
+    width: 15%;
+    min-width: 200px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5%;
+    padding: 20px;
+    border: 2px solid #1f127f;
+    border-radius: 10px;
+    background: rgba(179, 141, 255, 0.3);
+    box-shadow: rgba(31, 38, 135, 0.37) 0px 8px 32px;
+    backdrop-filter: blur(2px);
+}
+
+.select-start-locate, .select-end-locate {
+    /* Estilos generales del selector */
+    background: #ffffff;
+    color: rgb(73, 23, 139);
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 0.2rem;
+    border: 1px solid rgb(164, 162, 214);
+    font-size: 18px;
+    font-weight: lighter;
+    /* Estilos específicos del botón desplegable */
+    appearance: none; /* Oculta la apariencia nativa del botón en algunos navegadores */
+    -moz-appearance: none; /* Oculta la apariencia nativa en Firefox */
+    -webkit-appearance: none; /* Oculta la apariencia nativa en WebKit (Chrome, Safari) */
+    /*background-image: url('ruta_a_tu_icono.svg'); /* Puedes usar una imagen como icono */
+    background-position: right center; /* Ajusta la posición del icono */
+    background-repeat: no-repeat; /* Evita que la imagen del icono se repita */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.button-search-route {
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #643dff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-search-route:hover {
+    background-color: #3c0cd8;
+}
+
+.button-upload-json {
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #353535;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-upload-json:hover {
+    background-color: #000000;
+}
+
+.button-show-map {
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #cf0042;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-show-map:hover {
+    background-color: #9c103d;
+}

@@ -1,0 +1,134 @@
+.container-courses-registered {
+    width:100%;
+}
+
+table {
+    border: none;
+    width: 100%;
+    min-width: 400px;
+    border-spacing: 4px;
+}
+
+.course-button-remove,
+.section-buttons {
+    border: none;
+}
+
+th {
+    border-radius: 0.3rem;
+    border: none;
+    padding: 7px;
+    color: white;
+    background: #252525;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-preference {
+    width: 87px;
+}
+
+.header-buttons-remove-course,
+.header-buttons-remove-section {
+    background: transparent;
+}
+
+.course-button-remove-img-container {
+    height: auto;
+    background: transparent;
+    display: flex;
+    justify-content: end;
+}
+
+.course-button-remove-img-container img {
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.course-button-remove-img-container img:hover {
+    transform: rotate(360deg);
+}
+
+.course-name-cell {
+    text-align: center;
+    padding: 0 20px 0 20px;
+}
+
+.section-cell {
+    text-align: center;
+}
+
+.div-schedule-cell {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.div-schedule-cell,
+.preference-cell {
+    border: none;
+    padding: 0;
+}
+
+.div-schedule-cell select {
+    height: 40px;
+    width: 100%;
+}
+
+.div-schedule-cell select option {
+    outline: none;
+    background: #fff;
+}
+
+.div-schedule-cell input {
+    height: 38px;
+    width: 100%;
+}
+
+.preference-cell input {
+    height: 38px;
+    width: 87px;
+    padding: 0 8px 0 8px;
+}
+
+.preference-cell input::placeholder {
+    color: black;
+}
+
+.section-buttons {
+    padding: 0;
+}
+
+.section-buttons-img-container {
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.add-section-img, .remove-section-img {
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+.add-section-img:hover, .remove-section-img:hover {
+    transform: rotate(360deg);
+}
+
+/* Aplicamos estilos a  */
+.course-name-cell,
+.section-cell,
+.day-select-theory,
+.time-input-start-theory,
+.time-input-end-theory,
+.day-select-practice,
+.time-input-start-practice,
+.time-input-end-practice,
+.preference-input {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-radius: 0.3rem;
+    border: 1px solid rgb(94, 102, 255);
+    background: transparent;
+    backdrop-filter: blur(2px);
+}

@@ -1,0 +1,162 @@
+/* Agregamos estilos a la capa solapante*/
+.overlay-section {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.849);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-section.show {
+    opacity: 1; 
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.header-over-lay {
+    background: #fff;
+}
+
+.logo-nesoApp-over-lay {
+    color: #c4c4c4;
+}
+
+.name-app-over-lay {
+    color: #c4c4c4;
+}
+
+.header-of-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgb(25, 25, 25)60%);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.div-icon-left, .div-icon-right {
+    margin: 7px 25px 0 25px;
+    height: 60%;
+    width: auto;
+    background: rgba(255, 255, 0, 0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.div-icon-left {
+    justify-content: start;
+}
+
+.div-icon-right {
+    justify-content: end;
+}
+
+.container-img-icon-back, .container-img-icon-download {
+    height: 65%;
+    width: 40px;
+    border-radius: 0.5rem;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container-img-icon-back:hover, .container-img-icon-download:hover {
+    background: #393939;
+}
+
+.icon-of-header-over-lay {
+    height: auto;
+    width: 60%;
+}
+
+.icon-anime-of-header-over-lay {
+    position: relative;
+    top: -8px;
+    height: 80%;
+    width: auto;
+}
+
+.button-scrooll-schedules {
+    height: 180px;
+    width: auto;
+    opacity: 0.5;
+    border-radius: 1.5rem;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.button-scrooll-schedules:hover {
+    opacity: 1;
+}
+
+.canvas {
+    height: 0;
+    width: 100%;
+    background: #00000000;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+    border-radius: 2rem;
+}
+
+.container-of-indicator-actual-page {
+    position: absolute;
+    bottom: 24px;
+    width: auto;
+    height: 45px;
+    background: rgba(2, 234, 255, 0.3);
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.text-1-of-container-of-indicator-actual-page, .text-2-of-container-of-indicator-actual-page {
+    color: #fff;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-1-of-container-of-indicator-actual-page {
+    padding: 0 10px 0 20px;
+}
+
+.text-2-of-container-of-indicator-actual-page {
+    padding: 0 10px 0 10px;
+}
+
+.indicator-actual-page, .text-quantity-of-schedules {
+    height: 100%;
+    background: rgba(0, 158, 173, 0.909);;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    padding: 0 10px;
+}
+
+.text-quantity-of-schedules {
+    background: transparent;
+    padding: 0 20px 0 0;
+}

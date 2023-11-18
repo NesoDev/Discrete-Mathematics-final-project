@@ -1,0 +1,139 @@
+/* Importamos las fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono');
+
+/* Aplicamos estilos a <section class="container-register"> */
+
+.container-register {
+    width: 95%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-direction: column;
+}
+
+/* Aplicamos estilos a <div class="container-register-head"> */
+
+.container-register-head {
+    width: 100%;
+    height: 180px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    border-radius: 0.8rem;
+    padding: 10px 0px;
+}
+
+/* Aplicamos estilos a <div class="container-step-text">Register all your courses to generate your schedule</div> */
+
+.container-step-text {
+    /*max-width: 740px;*/
+    width: 100%;
+    font-family: 'Space Mono', monospace;
+    font-size: 2.7vw;
+    text-align: center;
+    font-weight: bolder;
+    display: inline;
+    
+    /*background-image: linear-gradient(to top, #00b887, #346eff, #4c10ff);
+    -webkit-background-clip: text;*/
+    background-clip: text;
+    color: #5029ff;
+}
+
+.container-step-text span {
+    color: initial;
+    font-size: 30px;
+}
+
+/* Aplicamos estilos a <div class="container-register-name-course" id="register-course"> */
+
+.container-register-name-course {
+    background: transparent;
+    max-width: 750px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Aplicamos estilos a <input type="text" id="input-name-course" placeholder="Registre el nombre de un curso" name="input-name-course" required> */
+
+#input-name-course {
+    background: #cecafe;
+    color: #fff;
+    width: 76%;
+    min-width: 405px;
+    max-width: 500px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    border: 1px solid #ffffff;
+    font-size: 18px;
+    font-weight:lighter;
+}
+
+.container-input-name-course-button-register-name-course {
+    background: transparent;
+    width: 675px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#input-name-course::placeholder {
+    color: #ffffff;
+}
+
+#input-name-course:focus,
+#input-name-course:hover {
+    background: #fff;
+    color: #484848;
+    border: 1px solid #b074ff;
+    box-shadow: 0px 0px 10px #3c0cd880;
+}
+
+/* Aplicamos estilos a <input type="submit" id="button-register-name-course" value="Register" name="button-register-name-course"> */
+
+#button-register-name-course, #button-generate-schedule {
+    background: #643dff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#button-load-pre-registration-form {
+    background: #ffd400;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 500;
+    fill: #5029ff;
+}
+
+#button-register-name-course:hover, #button-generate-schedule:hover {
+    background: #3c0cd8;
+}
+
+#button-load-pre-registration-form:hover{
+    background: #ffb300;
+    fill: #fff;
+}
+
+#upload-file-icon-svg {
+    width: auto;
+    height: 25px;
+}

@@ -1,0 +1,49 @@
+.container-table-schedule {
+    width: 70%;
+    min-width: 988px;
+    height: auto;
+    background: white;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1.25rem;
+    align-items: center;
+    overflow: hidden;
+    padding: 13px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);/* Agregado: Efecto de sombra */
+    border-radius: 0.4rem;
+}
+
+.table-schedule {
+    border: none;
+    border-spacing: 3px;
+    min-width: 90%;
+    height: 473px;
+    font-size: 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-table-schedule {
+    width: 60px;
+    padding: 8px;
+    border-radius: 0.2rem;
+    background: #252525;
+    color: white;
+}
+
+.container-class {
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 0.2rem;
+    padding: 0 5px 0 5px;
+    min-width: 70px;
+    max-width: 100px;
+}
+
+.container-hours-lapse {
+    max-width: 47px;
+    border: 1px solid black;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 5px 5px 5px;
+    border-radius: 0.2rem;
+}

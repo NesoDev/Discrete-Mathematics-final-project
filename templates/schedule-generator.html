@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>NesoApps</title>
+    <link rel="icon" type="image/png" href="../static/images/rin_pixel_art.png">
+    <link rel="stylesheet" href="../static/styles/general.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/container.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/container-register.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/container-table.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/course.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/section.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/container-corausel.css">
+    <link rel="stylesheet" href="../static/styles/css-schedule-generator/carousel.css">
+    <link rel="stylesheet" href="../static//styles/css-schedule-generator/over-lay.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo-nesoApp">
+            <h1>NesoApps</h1>
+            <img src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1695615863/HonokaPy_gkyaud.png"
+                id="logo-honky-py" alt="logo-nesoApp">
+        </div>
+        <div class="name-app">
+            <h2>GENERADOR DE HORARIO 📅</h2>
+        </div>
+    </header>
+
+    <section class="container">
+        <section class="container-register">
+            <div class="container-register-head">
+                <div class="container-step-text">Registra tus cursos para generar tu horario<span class="emoji">✨</span></div>
+                <div class="container-register-name-course" id="register-course">
+                    <div class="container-input-name-course-button-register-name-course">
+                        <input type="text" id="input-name-course" placeholder="Registra el nombre de un curso" name="input-name-course" required>
+                        <input type="submit" id="button-register-name-course" value="Registrar" name="button-register-name-course">
+                    </div>
+                    <button id="button-load-pre-registration-form" name="button-load-pre-registration-form">
+                        <svg id ="upload-file-icon-svg" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                             width="861.000000pt" height="861.000000pt" viewBox="0 0 861.000000 861.000000"
+                             preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,861.000000) scale(0.100000,-0.100000)"
+                                stroke="none">
+                                <path d="M4195 8510 c-59 -12 -142 -47 -189 -80 -63 -44 -1762 -1750 -1781
+                                -1789 -108 -215 -69 -464 99 -634 175 -178 446 -205 662 -65 27 17 214 196
+                                416 397 l368 366 2 -2020 3 -2020 22 -65 c55 -162 169 -276 331 -332 96 -33
+                                258 -33 355 0 129 45 230 130 288 244 63 124 59 -21 59 2187 l0 2015 383 -380
+                                c272 -269 399 -389 441 -414 258 -151 595 -42 733 237 78 155 80 302 7 453
+                                -35 73 -64 103 -908 947 -949 949 -908 912 -1058 948 -67 16 -168 18 -233 5z"/>
+                                <path d="M1015 3289 c-201 -24 -376 -170 -440 -366 -15 -47 -16 -104 -12 -555
+                                4 -495 4 -505 29 -618 94 -423 279 -768 572 -1068 337 -345 750 -554 1241
+                                -629 112 -17 232 -18 1900 -18 1985 0 1862 -4 2150 70 830 213 1458 919 1580
+                                1777 11 78 15 211 15 545 0 438 0 443 -23 506 -33 91 -70 150 -132 211 -212
+                                208 -563 195 -764 -30 -26 -30 -60 -79 -75 -108 -52 -104 -56 -133 -56 -504 0
+                                -188 -5 -386 -11 -439 -53 -476 -400 -853 -875 -950 -84 -17 -190 -18 -1809
+                                -18 -1615 0 -1725 1 -1808 18 -217 44 -393 135 -546 281 -184 176 -296 394
+                                -330 640 -6 43 -11 234 -11 431 0 218 -4 374 -11 407 -55 266 -312 449 -584
+                                417z"/>
+                            </g>
+                        </svg>
+
+                    </button>
+                </div>
+            </div>
+            
+            <div class="container-courses-registered">
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="header-buttons-remove-course"></th>
+                            <th rowspan="2" class="header-cell">Curso</th>
+                            <th rowspan="2" class="header-cell">Sección</th>
+                            <th colspan="2" class="header-cell">Horario</th>
+                            <th rowspan="2" class="header-cell header-preference">Preferencia</th>
+                            <th rowspan="2" class="header-buttons-remove-section"></th>
+                        </tr>
+                        <tr>
+                            <th class="header-cell">Teoría</th>
+                            <th class="header-cell">Práctica</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se agregarán las filas de cursos y secciones -->
+                    </tbody>
+                </table>
+            </div>
+            <input type="submit" id="button-generate-schedule" value="Generar Horario" name="button-generate-schedule">
+        </section>
+    </section>
+    <script>
+        var homeRoute = "{{ url_for('home') }}"
+        // Obtén la referencia a la imagen por su ID
+        var logoNesoApp = document.querySelector(".logo-nesoApp");
+        // Agrega un evento de clic a la imagen para redireccionar a la página de inicio
+        logoNesoApp.addEventListener("click", function () {
+            window.location.href = homeRoute;
+        });
+    </script>
+    <script src="../static/scripts/js-schedule-generator/index.js" type="module"></script>
+</body>
+
+</html>
+
+
+
+
+
+<!--<section class="container-carousel">
+            <div class="container-download-schedule">
+                <img class="button-download-schedule"
+                    src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697516368/Coming_Soon_6_w6vtal.png"
+                    alt="download-pdf-schedule-icon">
+                <img class="button-download-schedule"
+                    src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697516369/Coming_Soon_7_pdcw7y.png"
+                    alt="download-png-schedule-icon">
+            </div>
+            <div class="container-schedule">
+                <div class="button-previous-schedule">
+                    <img class="button-control-move-schedule"
+                        src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697574686/Dise%C3%B1o_sin_t%C3%ADtulo-PhotoRoom.png-PhotoRoom_lh3xle.png">
+                </div>
+                <table class="table-schedule">
+                    <thead class="table-header-schedule">
+                        <th class="header-schedule">Hora</th>
+                        <th class="header-schedule">Lunes</th>
+                        <th class="header-schedule">Martes</th>
+                        <th class="header-schedule">Miércoles</th>
+                        <th class="header-schedule">Jueves</th>
+                        <th class="header-schedule">Viernes</th>
+                        <th class="header-schedule">Sábado</th>
+                    </thead>
+                    <tbody class="table-body-schedule">
+                        <tr>
+                            <td class="container-hours-lapse">8:00 - 9:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Sistemas digitales S2 (T)</td>
+                            <td class="container-class" rowspan="2">Probabilidades S1 (T)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Procesos de software S1 (T)</td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">9:00 - 10:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">10:00 - 11:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Sistemas digitales S2 (P)</td>
+                            <td class="container-class" rowspan="2">Probabilidades S1 (P)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Procesos de software S1 (P)</td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">11:00 - 12:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">12:00 - 13:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">13:00 - 14:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">14:00 - 15:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Matemática discreta S3 (T)</td>
+                            <td class="container-class" rowspan="2">Contabilidad para al gestión - teoria</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">15:00 - 16:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">16:00 - 17:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Matemática discreta S3 (P)</td>
+                            <td class="container-class" rowspan="2">Contabilidad para al gestión S2 (P)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">17:00 - 18:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">18:00 - 19:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">ITE S2 (T)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Estructura de datos S1 (T)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">19:00 - 20:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">20:00 - 21:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">ITE S2 (P)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class" rowspan="2">Estructura de datos S1 (P)</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                        <tr>
+                            <td class="container-hours-lapse">21:00 - 22:00</td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                            <td class="container-class"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-next-schedule">
+                    <img class="button-control-move-schedule"
+                        src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697574680/Dise%C3%B1o_sin_t%C3%ADtulo_1_-PhotoRoom.png-PhotoRoom_o5dr7k.png"
+                        alt="button-next-schedule">
+                </div>
+            </div>
+            <div class="container-index">
+                <div class="index-indicator"></div>
+                <div class="index-indicator"></div>
+                <div class="index-indicator"></div>
+                <div class="index-indicator"></div>
+                <div class="index-indicator"></div>
+            </div>
+        </section>-->
