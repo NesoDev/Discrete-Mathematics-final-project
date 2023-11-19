@@ -99,7 +99,7 @@ function convertToGeoJSON(data) {
     console.log("CONVIRTIENDO EL JSON A UN GeoJSON");
     return {
         "type": "FeatureCollection",
-        "features": data.flatMap(item => 
+        "features": data.flatMap(item =>
             item.entrances.map(entrance => ({
                 "type": "Feature",
                 "properties": {
@@ -117,22 +117,51 @@ function convertToGeoJSON(data) {
     };
 }
 
-export function addNodesToMap(nodesUnmsmJson, map) {
-    let nodesUnmsmGeoJson = convertToGeoJSON(nodesUnmsmJson);
-    console.log(`GeoJSON: ${nodesUnmsmGeoJson}`);
-    // Asegurarse de que el mapa esté cargado
-    if (map.loaded()) {
-        // Agregar fuente de datos
-        map.addSource('entrances', {
+export function addNodesToMap(jsonNodes, map) {
+    const sourceId = 'entrances'; // El ID de tu fuente, asegúrate de que sea único y consistente
+
+    // Verifica si la fuente ya existe
+    if (map.getSource(sourceId)) {
+        // Actualiza los datos de la fuente existente
+        map.getSource(sourceId).setData({
+            'type': 'FeatureCollection',
+            'features': jsonNodes.map(node => ({
+                'type': 'Feature',
+                'properties': {
+                    'id': node.id,
+                    'name': node.name
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': node.entrances[0].position
+                }
+            }))
+        });
+    } else {
+        // Crea la fuente ya que no existe
+        map.addSource(sourceId, {
             'type': 'geojson',
-            'data': nodesUnmsmGeoJson
+            'data': {
+                'type': 'FeatureCollection',
+                'features': jsonNodes.map(node => ({
+                    'type': 'Feature',
+                    'properties': {
+                        'id': node.id,
+                        'name': node.name
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': node.entrances[0].position
+                    }
+                }))
+            }
         });
 
-        // Agregar capa de círculos
+        // Añadir la capa utilizando la fuente, si aún no se ha añadido
         map.addLayer({
-            'id': 'entrances-layer',
-            'type': 'circle',
-            'source': 'entrances',
+            'id': 'nodes-layer',
+            'type': 'circle', // o 'circle' si prefieres usar círculos
+            'source': sourceId,
             'paint': {
                 // Definimos el radio de los círculos utilizando la propiedad 'radius' de cada elemento
                 'circle-radius': {
@@ -141,9 +170,7 @@ export function addNodesToMap(nodesUnmsmJson, map) {
                 },
                 'circle-color': '#ff0000' // Color de los círculos
             }
+            // Agrega aquí más propiedades para definir cómo quieres que se vean los nodos
         });
-    } else {
-        console.error('Map is not fully loaded yet.');
     }
 }
-

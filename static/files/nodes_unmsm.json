@@ -34,5 +34,68 @@
                 "position": [-77.0851315838208, -12.055464489189447]
             }
         ]
+    },
+    {
+        "id": 4,
+        "name": "Facultad de Educación Física",
+        "entrances": [
+            {
+                "position": [-77.08489462875784, -12.054585960496922]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Facultad de Ingenieria Mecánica de Fluidos",
+        "entrances": [
+            {
+                "position": [-77.08165053113963, -12.055927460588848]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Facultad de Odontología",
+        "entrances": [
+            {
+                "position": [-77.08578393247558, -12.05415451030396]
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Facultad de Ingeniería Electrónica y Eléctrica",
+        "entrances": [
+            {
+                "position": [-77.08114498493262, -12.056398237432603]
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Facultad de Química e Ingeniería Química",
+        "entrances": [
+            {
+                "position": [-77.0835814936311, -12.060058041017626]
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Facultad de Ciencias Biológicas",
+        "entrances": [
+            {
+                "position": [-77.08213241576718, -12.059669296056185]
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Facultad de Ingeniería industrial",
+        "entrances": [
+            {
+                "position": [-77.081460732933, -12.059858025999773]
+            }
+        ]
     }
 ]

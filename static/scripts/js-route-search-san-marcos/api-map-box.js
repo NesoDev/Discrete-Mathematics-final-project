@@ -1,6 +1,6 @@
 import { addNodesToMap } from "./canvas-functions.js";
 
-mapboxgl.accessToken = 'tu_token';
+mapboxgl.accessToken = 'pk.eyJ1IjoibHVpcy1sdCIsImEiOiJjbGwxeHk3cmExZWczM2dyM3BrZnA3ZTV5In0.HAJy5jLsbNgPuOFFk22q2Q';
 
 var initialCoordinates = [-77.083943, -12.0565];
 
@@ -8,6 +8,10 @@ var bounds = [
     [-77.0884, -12.061398731476459], // Coordenadas del suroeste [lng, lat]
     [-77.07942532562103, -12.051447701183207]  // Coordenadas del noreste [lng, lat]
 ];
+
+let id;
+
+let jsonNodes = [];
 
 var map = new mapboxgl.Map({
     container: 'map', // el id del contenedor en tu HTML
@@ -24,50 +28,33 @@ map.addControl(new mapboxgl.NavigationControl());
 map.on('click', function (e) {
     const coordinates = e.lngLat.toArray(); // Obtiene las coordenadas del clic
     console.log('Coordenadas del clic:', coordinates);
+    id = jsonNodes.length;
+    createNodeMapBox(coordinates, id, map);
 });
 
-const nodesUnmsmJson = [
-    {
-        "id": 0,
-        "name": "Facultad de Ingenieria en Sistemas e Informática",
+function createNodeMapBox(coordinates, id, map) {
+    let node = {
+        "id": id, // Usando un número en lugar de un string
+        "name": `Node ${id}`, // Proporcionando un nombre descriptivo
         "entrances": [
             {
-                "position": [-77.08571748750853, -12.053674246767855]
+                "position": coordinates
             }
         ]
-    },
-    {
-        "id": 1,
-        "name": "Puerta 2",
-        "entrances": [
-            {
-                "position": [-77.07965746774524, -12.059500283486685]
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Clínica Universitaria",
-        "entrances": [
-            {
-                "position": [-77.08214323765738, -12.055620215860728]
-            },
-            {
-                "position": [-77.08214323765840, -12.055620215860728]
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "name": "Facultad de Educación",
-        "entrances": [
-            {
-                "position": [-77.0851315838208, -12.055464489189447]
-            }
-        ]
-    }
-];
+    };
+
+    console.log(`Node added with id: ${id}`);
+    
+    jsonNodes.push(node);
+    console.log(`Nodes : ${jsonNodes}`)
+    addNodesToMap(jsonNodes, map); // Asegúrate de que esta función maneje correctamente los nodos existentes
+    return id + 1; // Incrementa el id para el próximo nodo
+}
+
+
 map.on('load', () => {
-    addNodesToMap(nodesUnmsmJson, map);
+    if (!jsonNodes) {
+        addNodesToMap(jsonNodes, map)
+    };
 })
 // Puedes hacer lo que desees con las coordenadas, como agregar un marcador.
