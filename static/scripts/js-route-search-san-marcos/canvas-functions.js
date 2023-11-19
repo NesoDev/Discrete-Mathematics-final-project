@@ -1,32 +1,94 @@
+import { fillInputs } from "./menu-functions.js";
+
 export function switchToVis() {
+    let inputSelectStartLocate = document.querySelector("#select-start-locate");
+    let inputSelectEndLocate = document.querySelector("#select-end-locate");
+
     document.getElementById('map').style.display = 'none';  // Oculta el mapa
     document.getElementById('vis-container').style.display = 'block';  // Muestra Vis.js
+
+    fillInputs(inputSelectStartLocate, inputSelectEndLocate, []);
 }
 
-export function switchToMap() {
-    document.getElementById('map').style.display = 'block';  // Oculta el mapa
-    document.getElementById('vis-container').style.display = 'none';  // Muestra Vis.js
-}
-
-export function convertJsonToEdgesArray(data) {
-    const edgesAray = [];
-
-    data.forEach(node => {
-        node.ids_adjacents.forEach(idAdjacent => {
-            const edgeIds = [idAdjacent, node.id].sort((a, b) => a - b);
-            const edge = {
-                from: edgeIds[0],
-                to: edgeIds[1],
-                distance: parseFloat(Math.sqrt((node.position[0] - data[idAdjacent - 1].position[0]) ** 2 + (node.position[1] - data[idAdjacent - 1].position[1]) ** 2)).toFixed(2),
-            };
-
-            if (!edgesAray.some(e => (e.from === edge.from && e.to === edge.to))) {
-                edgesAray.push(edge);
-            }
+export function uploadJson(){
+    return new Promise((resolve) => {
+        let inputJson = document.createElement("input");
+        inputJson.type = "file";
+        inputJson.accept = ".json";
+        inputJson.click();
+        inputJson.addEventListener("change", function () {
+            let selectedFile = inputJson.files[0];
+            console.log("ARCHIVO SELECCIONADO: ", selectedFile.name);
+            resolve(selectedFile);
         });
     });
-    console.log(edgesAray)
-    return edgesAray;
+}
+
+export function createNodesVis(nodes) {
+    return new vis.DataSet(nodes.map(node => ({
+        id: node.id,
+        label: `   ${node.id}   `,
+        x: node.position[0],
+        y: node.position[1],
+        title: ` (${node.position[0]}, ${node.position[1]})`,
+        color: {
+            background: '#643dff',
+            border: 'white',
+            highlight: {
+                background: '#ffd400',
+                border: '#ffb300',
+            },
+        },
+        font: {
+            face: 'sans-serif',
+            color: 'white',
+            size: 25,
+        },
+        shape: 'circle',
+        size: 70,
+    })));
+}
+
+export function createEdgesVis(nodes) {
+    let edgesArray = convertJsonToEdgesArray(nodes);
+    return new vis.DataSet(edgesArray.map((edge, i) => ({
+        id: i, 
+        label: `   ${edge.distance}   `,
+        from: edge.from, 
+        to: edge.to, 
+        width: 5, 
+        color: 'black', 
+        dashes: false,
+        font: {
+            face: 'sans-serif',
+            color: '#643dff',
+            size: 20,
+        },
+    })));
+}
+
+export function renderNodesVis(nodes, edges, canvas) {
+    let data = {
+        nodes: nodes,
+        edges: edges
+    };
+
+    let options = {
+        layout: {
+            improvedLayout: true, // No permite que vis.js mejore la disposición automáticamente
+        },
+        physics: {
+            enabled: false, // Desactiva la simulación física
+        },
+        interaction: {
+            zoomView: true, // No Bloquea el zoom con el mouse
+            dragView: true, // No Bloquea el movimiento de la vista con el mouse
+        },
+    };
+
+    let network = new vis.Network(canvas, data, options);
+
+    return network;
 }
 
 export function updatePositionAndEdgesOfNodes(nodesVisJs, nodesArray, network) {
@@ -95,82 +157,23 @@ export function updatePositionAndEdgesOfNodes(nodesVisJs, nodesArray, network) {
     });
 }
 
-function convertToGeoJSON(data) {
-    console.log("CONVIRTIENDO EL JSON A UN GeoJSON");
-    return {
-        "type": "FeatureCollection",
-        "features": data.flatMap(item =>
-            item.entrances.map(entrance => ({
-                "type": "Feature",
-                "properties": {
-                    "id": item.id,
-                    "name": item.name,
-                    // Aquí incluimos el radio que será utilizado en la definición de la capa
-                    "radius": 4 // Este es el radio en píxeles
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": entrance.position
-                }
-            }))
-        )
-    };
-}
+export function convertJsonToEdgesArray(data) {
+    const edgesAray = [];
 
-export function addNodesToMap(jsonNodes, map) {
-    const sourceId = 'entrances'; // El ID de tu fuente, asegúrate de que sea único y consistente
+    data.forEach(node => {
+        node.ids_adjacents.forEach(idAdjacent => {
+            const edgeIds = [idAdjacent, node.id].sort((a, b) => a - b);
+            const edge = {
+                from: edgeIds[0],
+                to: edgeIds[1],
+                distance: parseFloat(Math.sqrt((node.position[0] - data[idAdjacent - 1].position[0]) ** 2 + (node.position[1] - data[idAdjacent - 1].position[1]) ** 2)).toFixed(2),
+            };
 
-    // Verifica si la fuente ya existe
-    if (map.getSource(sourceId)) {
-        // Actualiza los datos de la fuente existente
-        map.getSource(sourceId).setData({
-            'type': 'FeatureCollection',
-            'features': jsonNodes.map(node => ({
-                'type': 'Feature',
-                'properties': {
-                    'id': node.id,
-                    'name': node.name
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': node.entrances[0].position
-                }
-            }))
-        });
-    } else {
-        // Crea la fuente ya que no existe
-        map.addSource(sourceId, {
-            'type': 'geojson',
-            'data': {
-                'type': 'FeatureCollection',
-                'features': jsonNodes.map(node => ({
-                    'type': 'Feature',
-                    'properties': {
-                        'id': node.id,
-                        'name': node.name
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': node.entrances[0].position
-                    }
-                }))
+            if (!edgesAray.some(e => (e.from === edge.from && e.to === edge.to))) {
+                edgesAray.push(edge);
             }
         });
-
-        // Añadir la capa utilizando la fuente, si aún no se ha añadido
-        map.addLayer({
-            'id': 'nodes-layer',
-            'type': 'circle', // o 'circle' si prefieres usar círculos
-            'source': sourceId,
-            'paint': {
-                // Definimos el radio de los círculos utilizando la propiedad 'radius' de cada elemento
-                'circle-radius': {
-                    'property': 'radius',
-                    'type': 'identity'
-                },
-                'circle-color': '#ff0000' // Color de los círculos
-            }
-            // Agrega aquí más propiedades para definir cómo quieres que se vean los nodos
-        });
-    }
+    });
+    console.log(edgesAray)
+    return edgesAray;
 }

@@ -1,101 +1,75 @@
 [
     {
         "id": 0,
-        "name": "Facultad de Ingenieria en Sistemas e Informática",
+        "name": "Facultad de Ingeniería de Sistemas en informática",
         "entrances": [
-            {
-                "position": [-77.08571748750853, -12.053674246767855]
-            }
+            [-77.08571748750853, -12.053674246767855],
+            [-77.085252651456,-12.053450698583049]
         ]
     },
     {
         "id": 1,
-        "name": "Puerta 2",
+        "name": "Comedor",
         "entrances": [
-            {
-                "position": [-77.07965746774524, -12.059500283486685]
-            }
+            [-77.08273000363616,-12.05942550569604]
         ]
     },
     {
         "id": 2,
-        "name": "Clínica Universitaria",
+        "name": "Puerta 1",
         "entrances": [
-            {
-                "position": [-77.08214323765738, -12.055620215860728]
-            }
+            [-77.08554051926387,-12.06100698860854]
         ]
     },
     {
         "id": 3,
-        "name": "Facultad de Educación",
+        "name": "Puerta 2",
         "entrances": [
-            {
-                "position": [-77.0851315838208, -12.055464489189447]
-            }
+            [-77.07965746774524, -12.059500283486685]
         ]
     },
     {
         "id": 4,
-        "name": "Facultad de Educación Física",
+        "name": "Puerta 7",
         "entrances": [
-            {
-                "position": [-77.08489462875784, -12.054585960496922]
-            }
+            [-77.0846185095362,-12.053823875550364]
         ]
     },
     {
         "id": 5,
-        "name": "Facultad de Ingenieria Mecánica de Fluidos",
+        "name": "Facultad de Educación",
         "entrances": [
-            {
-                "position": [-77.08165053113963, -12.055927460588848]
-            }
+            [-77.0851315838208, -12.055464489189447]
         ]
     },
     {
         "id": 6,
-        "name": "Facultad de Odontología",
+        "name": "Facultad de Administración",
         "entrances": [
-            {
-                "position": [-77.08578393247558, -12.05415451030396]
-            }
+            [-77.08160079222397,-12.057508502545332]
         ]
     },
     {
         "id": 7,
-        "name": "Facultad de Ingeniería Electrónica y Eléctrica",
+        "name": "Jiron Panchos",
         "entrances": [
-            {
-                "position": [-77.08114498493262, -12.056398237432603]
-            }
+            [-77.08107634791313,-12.058700961143714],
+            [-77.08105561665326,-12.05880306986181]
         ]
     },
     {
         "id": 8,
-        "name": "Facultad de Química e Ingeniería Química",
+        "name": "Facultad de Ingeniería industrial",
         "entrances": [
-            {
-                "position": [-77.0835814936311, -12.060058041017626]
-            }
+            [-77.08090711435806,-12.059556558877176],
+            [-77.0809626027804,-12.060163863486409]
         ]
     },
     {
         "id": 9,
-        "name": "Facultad de Ciencias Biológicas",
+        "name": "Clínica universitaria",
         "entrances": [
-            {
-                "position": [-77.08213241576718, -12.059669296056185]
-            }
-        ]
-    },
-    {
-        "id": 10,
-        "name": "Facultad de Ingeniería industrial",
-        "entrances": [
-            {
-                "position": [-77.081460732933, -12.059858025999773]
-            }
+            [-77.08214135588213,-12.055616449941965]
         ]
     }
 ]

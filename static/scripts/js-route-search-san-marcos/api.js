@@ -1,7 +1,6 @@
-
 export async function sendDataToServer(nodesArray, idNodeStart, idNodeEnd) {
     try {
-        let data = {'node_start_id':idNodeStart, 'node_end_id':idNodeEnd, 'nodes':nodesArray};
+        let data = { 'node_start_id': idNodeStart, 'node_end_id': idNodeEnd, 'nodes': nodesArray };
 
         const response = await fetch("/route-min/api/calculate-routes-min", {
             method: "POST",
@@ -26,3 +25,18 @@ export async function sendDataToServer(nodesArray, idNodeStart, idNodeEnd) {
     }
 }
 
+export async function readJson(routeFile) {
+    try {
+        const response = await fetch(routeFile);
+        if (!response.ok) {
+            throw new Error('No se pudo obtener el archivo JSON');
+        }
+        const contenidoJSON = await response.json();
+        console.log(contenidoJSON);
+
+        return contenidoJSON;
+    } catch (error) {
+        console.error('Error al obtener el archivo JSON:', error);
+        throw error;
+    }
+}  

@@ -1,13 +1,11 @@
 /* Aplicamos estilos a <section class="container"> */
 
 .container {
+    background: yellow;
+    height: 100%;
     width: 100%;
-    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 60px;
-    background: #fff;
-    height: 100vh;
 }

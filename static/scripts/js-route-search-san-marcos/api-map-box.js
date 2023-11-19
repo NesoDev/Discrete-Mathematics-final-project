@@ -1,60 +1,26 @@
-import { addNodesToMap } from "./canvas-functions.js";
+import { addRouteToMap } from "./map-functions.js";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibHVpcy1sdCIsImEiOiJjbGwxeHk3cmExZWczM2dyM3BrZnA3ZTV5In0.HAJy5jLsbNgPuOFFk22q2Q';
+export function getRoute(start, end, map) {
+    mapboxgl.accessToken = 'pk.eyJ1IjoibHVpcy1sdCIsImEiOiJjbGwxeHk3cmExZWczM2dyM3BrZnA3ZTV5In0.HAJy5jLsbNgPuOFFk22q2Q';
 
-var initialCoordinates = [-77.083943, -12.0565];
+    const url_1 = `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]}%2C${start[1]}%3B${end[0]}%2C${end[1]}?alternatives=true&continue_straight=true&geometries=geojson&overview=full&steps=true&access_token=${mapboxgl.accessToken}`;
+    const url_2 = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]}%2C${start[1]}%3B${end[0]}%2C${end[1]}?alternatives=true&continue_straight=true&geometries=geojson&overview=full&steps=true&access_token=${mapboxgl.accessToken}`;
 
-var bounds = [
-    [-77.0884, -12.061398731476459], // Coordenadas del suroeste [lng, lat]
-    [-77.07942532562103, -12.051447701183207]  // Coordenadas del noreste [lng, lat]
-];
+    // Utiliza Promise.all para esperar a que ambas solicitudes se completen
+    Promise.all([fetch(url_1), fetch(url_2)])
+        .then(responses => Promise.all(responses.map(response => response.json())))
+        .then(data => {
+            const walkingRoute = data[0].routes[0].geometry;
+            const drivingRoute = data[1].routes[0].geometry;
 
-let id;
+            console.log(`Walking Route: ${JSON.stringify(walkingRoute)}`);
+            console.log(`Driving Route: ${JSON.stringify(drivingRoute)}`);
 
-let jsonNodes = [];
+            // Agregar una ruta de caminata al mapa con color rojo
+            addRouteToMap(walkingRoute, map, 'walking', '#FF0000');
+            // Agregar una ruta de conducción al mapa con color verde
+            addRouteToMap(drivingRoute, map, 'driving', '#00FF00');
 
-var map = new mapboxgl.Map({
-    container: 'map', // el id del contenedor en tu HTML
-    style: 'mapbox://styles/mapbox/streets-v11', // el estilo del mapa
-    center: initialCoordinates, // coordenadas de la Ciudad Universitaria UNMSM
-    zoom: 10, // nivel de acercamiento inicial
-    maxBounds: bounds,
-});
-
-// Agrega un control de navegación al mapa (opcional)
-map.addControl(new mapboxgl.NavigationControl());
-
-// Evento que se dispara cuando se hace clic en el mapa
-map.on('click', function (e) {
-    const coordinates = e.lngLat.toArray(); // Obtiene las coordenadas del clic
-    console.log('Coordenadas del clic:', coordinates);
-    id = jsonNodes.length;
-    createNodeMapBox(coordinates, id, map);
-});
-
-function createNodeMapBox(coordinates, id, map) {
-    let node = {
-        "id": id, // Usando un número en lugar de un string
-        "name": `Node ${id}`, // Proporcionando un nombre descriptivo
-        "entrances": [
-            {
-                "position": coordinates
-            }
-        ]
-    };
-
-    console.log(`Node added with id: ${id}`);
-    
-    jsonNodes.push(node);
-    console.log(`Nodes : ${jsonNodes}`)
-    addNodesToMap(jsonNodes, map); // Asegúrate de que esta función maneje correctamente los nodos existentes
-    return id + 1; // Incrementa el id para el próximo nodo
+        })
+        .catch(error => console.error('Error al obtener direcciones:', error));
 }
-
-
-map.on('load', () => {
-    if (!jsonNodes) {
-        addNodesToMap(jsonNodes, map)
-    };
-})
-// Puedes hacer lo que desees con las coordenadas, como agregar un marcador.
