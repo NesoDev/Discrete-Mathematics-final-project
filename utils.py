@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import math
 import fitz
 import re
 import os
