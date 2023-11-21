@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     let buttonSearchRoute = document.querySelector(".button-search-route");
     let buttonShowMap = document.querySelector(".button-show-map");
 
+    let containerButtonHiddenShow = document.querySelector(".container-button-hidden-show");
+    let buttonHidden = document.querySelector("#button-hidden-icon");
+    let buttonShow = document.querySelector("#button-show-icon");
+
+    let buttonExchangeInput = document.querySelector(".arrows-icon");
+
     //Creamos el mapa
     const map = createMap();
 
@@ -32,6 +38,36 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("--- LLENAMOS LOS SELECTS ---")
     fillInputs(inputSelectStartLocate, inputSelectEndLocate, points);
+
+    buttonShow.style.display = "none";
+
+    // Agregamos un evento al boton ocultar y mostrr
+    containerButtonHiddenShow.addEventListener('click', function(event) {
+        // Verifica si el objetivo del evento es el botón hijo
+        if (event.target === buttonHidden) {
+            let containerInputsButton = document.querySelector(".container-inputs-button-show");
+            containerInputsButton.classList.add('container-inputs-button-hidden');
+            containerInputsButton.classList.remove('container-inputs-button-show');
+            buttonHidden.style.display = 'none';
+            buttonShow.style.display = 'block';
+        }
+        if (event.target === buttonShow) {
+            let containerInputsButton = document.querySelector(".container-inputs-button-hidden");
+            containerInputsButton.classList.add('container-inputs-button-show');
+            containerInputsButton.classList.remove('container-inputs-button-hidden');
+            buttonHidden.style.display = 'block';
+            buttonShow.style.display = 'none';
+        }
+    });
+
+    buttonExchangeInput.addEventListener('click', () => {
+        [inputSelectStartLocate.value, inputSelectEndLocate.value] = [inputSelectEndLocate.value, inputSelectStartLocate.value]
+    })
+
+    // Agregamos un evento al boton mostrar
+    buttonShow.addEventListener('click', () => {
+        containerInputsButton.style.display = 'none';
+    });
 
     // Agregamos un evento al boton mostrar mapa
     buttonShowMap.addEventListener('click', () => {
