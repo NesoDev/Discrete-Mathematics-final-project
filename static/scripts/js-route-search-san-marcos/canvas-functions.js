@@ -7,6 +7,12 @@ export function switchToVis() {
     document.getElementById('map').style.display = 'none';  // Oculta el mapa
     document.getElementById('vis-container').style.display = 'block';  // Muestra Vis.js
 
+    document.querySelector('.button-show-map').style.background = '#1f646e';
+    document.querySelector('#map-icon').style.filter = 'brightness(1.2)';
+
+    document.querySelector('.button-upload-json').style.background = '#00d47e';
+    document.querySelector('#nodes-icon').style.filter = 'brightness(10)';
+
     fillInputs(inputSelectStartLocate, inputSelectEndLocate, []);
 }
 

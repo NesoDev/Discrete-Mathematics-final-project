@@ -7,6 +7,12 @@ export function switchToMap() {
     document.getElementById('map').style.display = 'block';  // Oculta el mapa
     document.getElementById('vis-container').style.display = 'none';  // Muestra Vis.js
 
+    document.querySelector('.button-upload-json').style.background = '#1f646e';
+    document.querySelector('#nodes-icon').style.filter = 'brightness(1.2)';
+
+    document.querySelector('.button-show-map').style.background = '#00d47e';
+    document.querySelector('#map-icon').style.filter = 'brightness(10)';
+
     fillInputs(inputSelectStartLocate, inputSelectEndLocate, []);
 }
 
@@ -20,6 +26,7 @@ export function createMap() {
     ];
 
     // Inicializamos el mapa
+    console.log("--- CREANDO MAPA ---");
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -27,6 +34,7 @@ export function createMap() {
         zoom: 10,
         maxBounds: bounds,
     });
+    console.log("--- MAPA CREADO ---");
 
     return map;
 }

@@ -1,7 +1,7 @@
 import { addRouteToMap } from "./map-functions.js";
 
 export function getRoute(start, end, map) {
-    mapboxgl.accessToken = 'pk.eyJ1IjoibHVpcy1sdCIsImEiOiJjbGwxeHk3cmExZWczM2dyM3BrZnA3ZTV5In0.HAJy5jLsbNgPuOFFk22q2Q';
+    mapboxgl.accessToken = 'pk.eyJ1IjoibmVzb2RldiIsImEiOiJjbGw0YzBhbm0wM25sM3FyeTV4c3ExOHZxIn0.TDC6KD-aJ_2gFo36-eDO5A';
 
     const url_1 = `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]}%2C${start[1]}%3B${end[0]}%2C${end[1]}?alternatives=true&continue_straight=true&geometries=geojson&overview=full&steps=true&access_token=${mapboxgl.accessToken}`;
     const url_2 = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]}%2C${start[1]}%3B${end[0]}%2C${end[1]}?alternatives=true&continue_straight=true&geometries=geojson&overview=full&steps=true&access_token=${mapboxgl.accessToken}`;

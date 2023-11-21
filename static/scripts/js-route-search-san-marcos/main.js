@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     //Creamos el mapa
     const map = createMap();
 
+    console.log("--- LEYENDO JSON ---")
     points = await readJson(path);
+    console.log("--- JSON LEIDO ---")
     console.log(`Points: ${points}`)
 
     console.log("--- LLENAMOS LOS SELECTS ---")
@@ -40,7 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Agregamos un evento al boton cargar json
     buttonUploadJson.addEventListener('click', () => {
         console.log("-- ABRIENDO EXPLORADOR DE ARCHIVOS --");
-
+        // Hacemos visible el canvas cantainer e invisilizamos al map container
+        switchToVis();
         uploadJson()
             .then(selectedFile => {
                 console.log("-- ANALIZANDO EL ARCHIVO JSON --");
@@ -54,9 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                         // Verifica si el resultado es un arreglo
                         if (Array.isArray(nodes)) {
-
-                            // Hacemos visible el canvas cantainer e invisilizamos al map container
-                            switchToVis();
 
                             // Llenaremos los inputs de nodos
                             fillInputs(inputSelectStartLocate, inputSelectEndLocate, nodes);

@@ -15,7 +15,6 @@
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.0.4/turf.min.js"></script>
 
 </head>
 
@@ -35,20 +34,37 @@
         <!--<div class="container-step-text">Elija un origen y llegada para ver la menor ruta<span class="emoji">✨</span></div>-->
         <div class="container-menu-map-section">
             <div class="container-menu-section">
-                <select id="select-start-locate" class="select-start-locate" name="select-start-locate" required>
-                    <!-- Opciones del selector de origen -->
-                    <option value="" disabled selected>Seleccione su origen</option>
-                    <!-- Agrega más opciones según sea necesario -->
-                </select>
-
-                <select id="select-end-locate" class="select-end-locate" name="select-end-locate" required>
-                    <!-- Opciones del selector de destino -->
-                    <option value="" disabled selected>Seleccione su destino</option>
-                    <!-- Agrega más opciones según sea necesario -->
-                </select>
-                <input type="submit" class="button-show-map" value="Ver mapa UNMSM">
-                <input type="submit" class="button-upload-json" value="Cargar GeoJson">
-                <input type="submit" class="button-search-route" value="Buscar ruta">
+                <div class="container-button-hidden">
+                    <img id="button-hidden-icon" src="static/images/button-hidden-icon.png" alt="button-hidden-icon">
+                </div>
+                <div class="container-inputs-button">
+                    <div class="container-inputs-icon">
+                        <div class="container-inputs">
+                            <select id="select-start-locate" class="select-start-locate" name="select-start-locate" required>
+                                <!-- Opciones del selector de origen -->
+                                <option value="" disabled selected>Seleccione su origen</option>
+                                <!-- Agrega más opciones según sea necesario -->
+                            </select>    
+                            <select id="select-end-locate" class="select-end-locate" name="select-end-locate" required>
+                                <!-- Opciones del selector de destino -->
+                                <option value="" disabled selected>Seleccione su destino</option>
+                                <!-- Agrega más opciones según sea necesario -->
+                            </select>
+                        </div>
+                        <div class="arrows-icon">
+                            <img id="arrows-icon" src="static/images/arrows-icon.png" alt="arrows-icon">
+                        </div>
+                    </div>
+                    <input type="submit" class="button-search-route" value="Buscar ruta">
+                </div>
+                <div class="container-sections">
+                    <div class="button-show-map">
+                        <img src="static/images/map-icon.png" id="map-icon" alt="map-icon">
+                    </div>
+                    <div class="button-upload-json">
+                        <img src="static/images/nodes-icon.png" id="nodes-icon" alt="nodes-icon">
+                    </div>
+                </div>
             </div>
             <div id="map" class="map-container"></div>
             <div id="vis-container" class="canvas-container" style="display: none;"></div>
