@@ -72,39 +72,38 @@ function createSchedule(schedule) {
     console.log("   Agregamos la cabecera HTML a la tabla HTML  ");
     tableSchedule.appendChild(tHead);
 
-    // Mapa para almacenar colores únicos para cada id de curso
     let courseColors = new Map();
     let pastelColors =  [
-        "#FFD700",  // Amarillo pastel
-        "#98FB98",  // Verde pastel
-        "#FFA07A",  // Salmón claro
-        "#DCD0FF",  // Lila pastel
-        "#FFFF99",  // Amarillo claro
-        "#FFB6C1",  // Rosa pastel
-        "#B0E0E6",  // Azul celeste pastel
-        "#D3D3D3",  // Gris claro
-        "#FFB6C1",  // Rosa pastel
-        "#FFD700",  // Amarillo pastel
-        "#ADD8E6",  // Azul claro
-        "#FF69B4",  // Rosa claro
-        "#98FB98",  // Verde pastel
-        "#DDA0DD",  // Ciruela pastel
-        "#FF6347",  // Rojo claro
-        "#7B68EE",  // Azul lila pastel
-        "#B0C4DE",  // Azul acero pastel
-        "#FFD700",  // Amarillo pastel
-        "#AFEEEE"   // Turquesa pastel
+        "#FFD700",
+        "#98FB98",
+        "#FFA07A",
+        "#DCD0FF",
+        "#FFFF99",
+        "#FFB6C1",
+        "#B0E0E6",
+        "#D3D3D3",
+        "#FFB6C1",
+        "#FFD700",
+        "#ADD8E6",
+        "#FF69B4",
+        "#98FB98",
+        "#DDA0DD",
+        "#FF6347",
+        "#7B68EE",
+        "#B0C4DE",
+        "#FFD700",
+        "#AFEEEE"
     ]
     
     let colorIndex = 0;
 
     console.log("   Creando cuerpo HTML   ");
-    // Creamos el cuerpo de la tabla
+    
     let tBodyHTML = document.createElement("tbody");
     tBodyHTML.classList.add("table-body-schedule");
 
     console.log("   LLenamos cuerpo HTML   ");
-    // Llenamos el cuerpo de la tabla
+    
     schedule.forEach((row, i) => {
         console.log(`----grupo ${i}----`);
         console.log(row);
@@ -140,7 +139,7 @@ function createSchedule(schedule) {
             tdHTML.rowSpan = cell.row;
             tdHTML.textContent = cell.nombre;
             console.log(tdHTML.textContent)
-            // Aplicar el color a la celda
+            
             if (cell.id !== '*') {
                 tdHTML.style.backgroundColor = courseColors.get(cell.id);
             }

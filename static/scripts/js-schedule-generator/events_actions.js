@@ -2,7 +2,6 @@ import { renderCourses } from "./user_interface.js";
 import { sendCoursesToTheServer } from "./api.js";
 import { createCanvas, createIndicatorOfActualSchedule } from "./schedule_actions.js";
 const { jsPDF } = window.jspdf;
-const { html2pdf } = window.html2canvas;
 
 export function uploadFilePDF() {
     return new Promise((resolve, reject) => {
@@ -110,7 +109,6 @@ export function updateCoursesObject(courses) {
 }
 
 export async function showOverLaySection(overlappedElement) {
-    // Regresamos a la parte superior de la página}
     if (window.scrollY !== 0) {
         await returnToTop();
     }
@@ -123,10 +121,8 @@ export async function showOverLaySection(overlappedElement) {
     overlaySection.id = 'overlay-section';
     overlaySection.classList.add('show');
 
-    // Agregamos una clase a la etiqueta <header></header>
     document.querySelector("header").classList.add("header-over-lay");
 
-    // Creamos una cabecera para la capa solapante
     let headerOfOverLay = document.createElement("div");
     headerOfOverLay.classList.add('header-of-overlay');
 
@@ -162,17 +158,13 @@ export async function showOverLaySection(overlappedElement) {
     headerOfOverLay.appendChild(divIconLeft);
     headerOfOverLay.appendChild(divIconRight);
 
-    // Agregamos la cabecera a la capa solapante
     overlaySection.appendChild(headerOfOverLay);
 
-    // Agregamos una clase a la capa solapada (body)
     overlappedElement.classList.add('no-scroll');
 
-    // Agregamos clases a los siguiente elementos HTML
     document.querySelector(".logo-nesoApp").classList.add("logo-nesoApp-over-lay");
     document.querySelector(".name-app").classList.add("name-app-over-lay");
 
-    // Agregamos la capa solapante a la capa solapada (body)
     overlappedElement.appendChild(overlaySection);
 
     return document.querySelector(".overlay-section");
@@ -190,16 +182,13 @@ function returnToTop() {
     return new Promise(resolve => {
         let targetElement = document.querySelector("body");
 
-        // Calcula la distancia desde la parte superior del documento hasta el elemento objetivo
         const targetOffset = targetElement.getBoundingClientRect().top + window.scrollY;
 
-        // Realiza el scroll suavemente hasta la coordenada del objetivo
         window.scrollTo({
             top: targetOffset,
             behavior: 'smooth'
         });
 
-        // Espera a que termine el desplazamiento suave antes de resolver la promesa
         window.addEventListener('scroll', function handler() {
             if (window.scrollY === targetOffset) {
                 window.removeEventListener('scroll', handler);
@@ -253,8 +242,8 @@ export async function sendCoursesButtonPressed(courses, body) {
                 const realWidth = rect.width;
                 const realHeight = rect.height;
             
-                var PDF_Width = realWidth; // Usar el ancho real
-                var PDF_Height = realHeight; // Usar el alto real
+                var PDF_Width = realWidth;
+                var PDF_Height = realHeight;
             
                 var canvas_image_width = PDF_Width;
                 var canvas_image_height = PDF_Height;

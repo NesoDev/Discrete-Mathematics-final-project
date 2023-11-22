@@ -42,14 +42,10 @@
                     <div class="container-inputs-icon">
                         <div class="container-inputs">
                             <select id="select-start-locate" class="select-start-locate" name="select-start-locate" required>
-                                <!-- Opciones del selector de origen -->
                                 <option value="" disabled selected>Seleccione su origen</option>
-                                <!-- Agrega más opciones según sea necesario -->
                             </select>    
                             <select id="select-end-locate" class="select-end-locate" name="select-end-locate" required>
-                                <!-- Opciones del selector de destino -->
                                 <option value="" disabled selected>Seleccione su destino</option>
-                                <!-- Agrega más opciones según sea necesario -->
                             </select>
                         </div>
                         <div class="arrows-icon">
@@ -73,9 +69,7 @@
     </section>
     <script>
         var homeRoute = "{{ url_for('home') }}"
-        // Obtén la referencia a la imagen por su ID
         var logoNesoApp = document.querySelector(".logo-nesoApp");
-        // Agrega un evento de clic a la imagen para redireccionar a la página de inicio
         logoNesoApp.addEventListener("click", function () {
             window.location.href = homeRoute;
         });

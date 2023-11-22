@@ -16,7 +16,7 @@ export function switchToVis() {
     fillInputs(inputSelectStartLocate, inputSelectEndLocate, []);
 }
 
-export function uploadJson(){
+export function uploadJson() {
     return new Promise((resolve) => {
         let inputJson = document.createElement("input");
         inputJson.type = "file";
@@ -58,12 +58,12 @@ export function createNodesVis(nodes) {
 export function createEdgesVis(nodes) {
     let edgesArray = convertJsonToEdgesArray(nodes);
     return new vis.DataSet(edgesArray.map((edge, i) => ({
-        id: i, 
+        id: i,
         label: `   ${edge.distance}   `,
-        from: edge.from, 
-        to: edge.to, 
-        width: 5, 
-        color: 'black', 
+        from: edge.from,
+        to: edge.to,
+        width: 5,
+        color: 'black',
         dashes: false,
         font: {
             face: 'sans-serif',
@@ -81,14 +81,14 @@ export function renderNodesVis(nodes, edges, canvas) {
 
     let options = {
         layout: {
-            improvedLayout: true, // No permite que vis.js mejore la disposición automáticamente
+            improvedLayout: true,
         },
         physics: {
-            enabled: false, // Desactiva la simulación física
+            enabled: false, 
         },
         interaction: {
-            zoomView: true, // No Bloquea el zoom con el mouse
-            dragView: true, // No Bloquea el movimiento de la vista con el mouse
+            zoomView: true,
+            dragView: true,
         },
     };
 
@@ -104,38 +104,31 @@ export function updatePositionAndEdgesOfNodes(nodesVisJs, nodesArray, network) {
     const edgesModified = [];
 
     nodes.forEach(node => {
-        // Accede a las propiedades del nodo
         const nodeId = node.id;
         const position = network.getPositions([nodeId]);
         const xPosition = position[nodeId].x;
         const yPosition = position[nodeId].y;
 
-        // Verificamos si el nodo fue desplazado (está dentro de nodesVisjs)
         if (nodesVisJs.includes(nodeId)) {
             console.log(`---- Nodo desplazado: ${nodeId} ----`);
             console.log(`Nueva posicion: ${xPosition}, ${yPosition}`)
             console.log(`-- Actualizamos las posiciones en nodesArray --`);
 
-            // Crear un objeto de nodo actualizado
             const updatedNode = {
                 id: nodeId,
                 title: `(${xPosition}, ${yPosition})`
             };
 
-            // Actualizamos el nodo en la red
             network.body.data.nodes.update(updatedNode);
 
-            // Actualizamos el nodo en el array
             nodesArray[nodeId - 1].position = [xPosition, yPosition];
 
-            // Buscamos las aristas que tienen como extremo al nodo
             edges.forEach(edge => {
                 if (edge.from == nodeId || edge.to == nodeId) {
                     edgesModified.push(edge)
                 }
             })
 
-            // Actualizamos las distancias de esta aristas
             edgesModified.forEach(edgeModified => {
                 const nodeFromId = edgeModified.from;
                 const nodeToId = edgeModified.to;
@@ -156,7 +149,6 @@ export function updatePositionAndEdgesOfNodes(nodesVisJs, nodesArray, network) {
                     font: edgeModified.font,
                 }
 
-                // Actualizamos la arista en la red
                 network.body.data.edges.update(updateEdge);
             })
         }
@@ -182,4 +174,40 @@ export function convertJsonToEdgesArray(data) {
     });
     console.log(edgesAray)
     return edgesAray;
+}
+
+function generatePastelColors(count) {
+    const colors = [];
+    for (let i = 0; i < count; i++) {
+        const hue = Math.random() * 360;
+        const saturation = 50 + Math.random() * 10;
+        const lightness = 70 + Math.random() * 10;
+        colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
+    }
+    return colors;
+}
+
+export function drawRoutes(routes, network) {
+    const colors = generatePastelColors(routes.length);
+
+    routes.forEach((route, i) => {
+        route.forEach((nodeId, nodeIndex) => {
+            console.log(`---- Coloreando Nodo : ${nodeId} ----`);
+
+            let nodeColor = colors[i];
+            if (nodeIndex === 0 || nodeIndex === route.length - 1) {
+                nodeColor = '#000';
+            }
+
+            const updatedNode = {
+                id: nodeId,
+                color: {
+                    background: nodeColor,
+                    border: 'white',
+                }
+            };
+
+            network.body.data.nodes.update(updatedNode);
+        });
+    });
 }

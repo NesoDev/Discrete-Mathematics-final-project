@@ -85,7 +85,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Aquí se agregarán las filas de cursos y secciones -->
                     </tbody>
                 </table>
             </div>
@@ -94,9 +93,7 @@
     </section>
     <script>
         var homeRoute = "{{ url_for('home') }}"
-        // Obtén la referencia a la imagen por su ID
         var logoNesoApp = document.querySelector(".logo-nesoApp");
-        // Agrega un evento de clic a la imagen para redireccionar a la página de inicio
         logoNesoApp.addEventListener("click", function () {
             window.location.href = homeRoute;
         });
@@ -105,161 +102,3 @@
 </body>
 
 </html>
-
-
-
-
-
-<!--<section class="container-carousel">
-            <div class="container-download-schedule">
-                <img class="button-download-schedule"
-                    src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697516368/Coming_Soon_6_w6vtal.png"
-                    alt="download-pdf-schedule-icon">
-                <img class="button-download-schedule"
-                    src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697516369/Coming_Soon_7_pdcw7y.png"
-                    alt="download-png-schedule-icon">
-            </div>
-            <div class="container-schedule">
-                <div class="button-previous-schedule">
-                    <img class="button-control-move-schedule"
-                        src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697574686/Dise%C3%B1o_sin_t%C3%ADtulo-PhotoRoom.png-PhotoRoom_lh3xle.png">
-                </div>
-                <table class="table-schedule">
-                    <thead class="table-header-schedule">
-                        <th class="header-schedule">Hora</th>
-                        <th class="header-schedule">Lunes</th>
-                        <th class="header-schedule">Martes</th>
-                        <th class="header-schedule">Miércoles</th>
-                        <th class="header-schedule">Jueves</th>
-                        <th class="header-schedule">Viernes</th>
-                        <th class="header-schedule">Sábado</th>
-                    </thead>
-                    <tbody class="table-body-schedule">
-                        <tr>
-                            <td class="container-hours-lapse">8:00 - 9:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Sistemas digitales S2 (T)</td>
-                            <td class="container-class" rowspan="2">Probabilidades S1 (T)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Procesos de software S1 (T)</td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">9:00 - 10:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">10:00 - 11:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Sistemas digitales S2 (P)</td>
-                            <td class="container-class" rowspan="2">Probabilidades S1 (P)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Procesos de software S1 (P)</td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">11:00 - 12:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">12:00 - 13:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">13:00 - 14:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">14:00 - 15:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Matemática discreta S3 (T)</td>
-                            <td class="container-class" rowspan="2">Contabilidad para al gestión - teoria</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">15:00 - 16:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">16:00 - 17:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Matemática discreta S3 (P)</td>
-                            <td class="container-class" rowspan="2">Contabilidad para al gestión S2 (P)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">17:00 - 18:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">18:00 - 19:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">ITE S2 (T)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Estructura de datos S1 (T)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">19:00 - 20:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">20:00 - 21:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">ITE S2 (P)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class" rowspan="2">Estructura de datos S1 (P)</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                        <tr>
-                            <td class="container-hours-lapse">21:00 - 22:00</td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                            <td class="container-class"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="button-next-schedule">
-                    <img class="button-control-move-schedule"
-                        src="https://res.cloudinary.com/dimcnbuqs/image/upload/v1697574680/Dise%C3%B1o_sin_t%C3%ADtulo_1_-PhotoRoom.png-PhotoRoom_o5dr7k.png"
-                        alt="button-next-schedule">
-                </div>
-            </div>
-            <div class="container-index">
-                <div class="index-indicator"></div>
-                <div class="index-indicator"></div>
-                <div class="index-indicator"></div>
-                <div class="index-indicator"></div>
-                <div class="index-indicator"></div>
-            </div>
-        </section>-->

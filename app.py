@@ -36,10 +36,6 @@ def uploadPdf():
         pdf_file = request.files["pdf"]
         courses_object = leerPDF(pdf_file)
 
-        # Puedes guardar el archivo en el servidor si es necesario
-        # pdf_file.save("/ruta/donde/guardar/archivo.pdf")
-        # Aquí puedes realizar cualquier procesamiento adicional según tus necesidades
-        # ...
         print("-- ENVIAMOS DATOS AL FRONTEND --")
         return jsonify(courses_object)
     except Exception as e:

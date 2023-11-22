@@ -1,7 +1,7 @@
 
 import { sendDataToServer, readJson } from "./api.js";
 import { getRoute } from "./api-map-box.js";
-import { createEdgesVis, createNodesVis, renderNodesVis, updatePositionAndEdgesOfNodes, switchToVis} from "./canvas-functions.js";
+import { createEdgesVis, createNodesVis, renderNodesVis, updatePositionAndEdgesOfNodes, switchToVis, drawRoutes} from "./canvas-functions.js";
 import { addRouteToMap, createMap, switchToMap } from "./map-functions.js";
 import { uploadJson } from "./canvas-functions.js";
 import { fillInputs } from "./menu-functions.js";
@@ -9,7 +9,7 @@ import { fillInputs } from "./menu-functions.js";
 let path = 'static/files/nodes_unmsm.json';
 let nodes;
 let points;
-let network; // Variable para mantener la instancia de la red vis.js
+let network;
 let routes = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let buttonExchangeInput = document.querySelector(".arrows-icon");
 
-    //Creamos el mapa
+    
     const map = createMap();
 
     console.log("--- LEYENDO JSON ---")
@@ -41,9 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     buttonShow.style.display = "none";
 
-    // Agregamos un evento al boton ocultar y mostrr
     containerButtonHiddenShow.addEventListener('click', function(event) {
-        // Verifica si el objetivo del evento es el botón hijo
         if (event.target === buttonHidden) {
             let containerInputsButton = document.querySelector(".container-inputs-button-show");
             containerInputsButton.classList.add('container-inputs-button-hidden');
@@ -64,21 +62,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         [inputSelectStartLocate.value, inputSelectEndLocate.value] = [inputSelectEndLocate.value, inputSelectStartLocate.value]
     })
 
-    // Agregamos un evento al boton mostrar
-    buttonShow.addEventListener('click', () => {
-        containerInputsButton.style.display = 'none';
-    });
-
-    // Agregamos un evento al boton mostrar mapa
     buttonShowMap.addEventListener('click', () => {
         switchToMap();
         fillInputs(inputSelectStartLocate, inputSelectEndLocate, points);
     });
 
-    // Agregamos un evento al boton cargar json
     buttonUploadJson.addEventListener('click', () => {
         console.log("-- ABRIENDO EXPLORADOR DE ARCHIVOS --");
-        // Hacemos visible el canvas cantainer e invisilizamos al map container
         switchToVis();
         uploadJson()
             .then(selectedFile => {
@@ -88,29 +78,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 fileReader.onload = function (event) {
                     try {
-                        // Parsea el contenido como JSON y conviértelo en un arreglo
                         nodes = JSON.parse(event.target.result);
 
-                        // Verifica si el resultado es un arreglo
                         if (Array.isArray(nodes)) {
 
-                            // Llenaremos los inputs de nodos
                             fillInputs(inputSelectStartLocate, inputSelectEndLocate, nodes);
 
-                            // Crea los nodos en el formato esperado por vis.js
                             let visNodes = createNodesVis(nodes);
                             let visEdges = createEdgesVis(nodes);
 
-                            // Limpia la red existente antes de renderizar una nueva
                             if (network) {
                                 network.destroy();
                             }
-                            // Renderiza los nodos utilizando vis.js
+
                             network = renderNodesVis(visNodes, visEdges, canvasContainer);
 
                             network.on("dragEnd", function (event) {
-                                // El evento contiene información sobre los nodos que se han movido
-                                const nodesMoved = event.nodes; // Array de IDs de los nodos movidos
+                                const nodesMoved = event.nodes;
                                 updatePositionAndEdgesOfNodes(nodesMoved, nodes, network);
                                 network.redraw();
                             })
@@ -122,7 +106,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                 };
 
-                // Lee el contenido del archivo como texto
                 fileReader.readAsText(selectedFile);
             })
             .catch(error => {
@@ -130,7 +113,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
     });
 
-    // Agregamos un evento al boton Buscar Rutas
     buttonSearchRoute.addEventListener('click', async () => {
         console.log("-- BOTÓN BUSCAR RUTAS PRESIONADO --");
         if (canvasContainer.style.display === 'block') {
@@ -140,6 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 console.log(`Nodo destino : ${inputSelectEndLocate.value}`);
                 routes = await sendDataToServer(nodes, inputSelectStartLocate.value, inputSelectEndLocate.value);
                 console.log(`RUTAS: ${routes}`);
+                drawRoutes(routes, network);
             } else {
                 alert("Elija opciones válidas")
             }
@@ -147,7 +130,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             let idStart = inputSelectStartLocate.value;
             let idEnd = inputSelectEndLocate.value;
 
-            // Calculamos las rutas para cada entrada del punto de orgien y destino
             let positionsStart = points[idStart].entrances;
             let positionsEnd = points[idEnd].entrances;
 
@@ -158,9 +140,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     getRoute(positionStart,positionEnd, map);
                 })
             })
-
-            //console.log("--- OBTENIENDO DIRECCIONES ---")
-            //getDirections(positionStart,positionEnd, map)
         }
     })
 });

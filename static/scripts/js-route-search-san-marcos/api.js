@@ -39,4 +39,4 @@ export async function readJson(routeFile) {
         console.error('Error al obtener el archivo JSON:', error);
         throw error;
     }
-}  
+}

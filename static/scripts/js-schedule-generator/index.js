@@ -285,7 +285,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let buttonGenerateSchedule = document.getElementById("button-generate-schedule");
     let table = document.querySelector("table");
 
-    // Agregar evento para registrar curso
     buttonRegisterNameCourse.addEventListener("click", function () {
         console.log("-- CURSO REGISTRADO --");
         let nameCourse = inputNameCourse.value;
@@ -297,7 +296,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
-    // Agregar evento para cargar un archivo PDF
     buttonUploadPdf.addEventListener("click", function () {
         console.log("-- ABRIENDO EXPLORADOR DE ARCHIVOS --");
 
@@ -317,7 +315,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // Agrega un controlador de eventos para la tecla Enter
     inputNameCourse.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
             console.log("-- CURSO REGISTRADO --");
@@ -331,14 +328,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Agregar evento para enviar al backend los cursos registrados
     buttonGenerateSchedule.addEventListener("click", async function () {
         sendCoursesButtonPressed(courses, body);
     })
 
     table.addEventListener("click", function (event) {
         updateCoursesObject(courses);
-        // Agregar evento para eliminar sección
         if (event.target.classList.contains("remove-section-img")) {
             let idButtonRemove = event.target.id;
             let idSection = parseInt(idButtonRemove.split("-")[4]);
@@ -347,7 +342,6 @@ document.addEventListener("DOMContentLoaded", function () {
             removeSection(courses, idCourse, idSection, tableBody);
         }
 
-        // Agregar evento para agregar una sección
         if (event.target.classList.contains("add-section-img")) {
             let idButtonAdd = event.target.id;
             let idCourse = parseInt(idButtonAdd.split("-")[3]);
@@ -355,7 +349,6 @@ document.addEventListener("DOMContentLoaded", function () {
             addSection(courses, idCourse, tableBody);
         }
 
-        // Agregar evento para eliminar curso
         if (event.target.classList.contains("remove-course-img")) {
             let idButtonRemove = event.target.id;
             let idCourse = parseInt(idButtonRemove.split("-")[3]);
