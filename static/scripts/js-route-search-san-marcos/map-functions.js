@@ -20,9 +20,11 @@ export function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoibmVzb2RldiIsImEiOiJjbGw0YzBhbm0wM25sM3FyeTV4c3ExOHZxIn0.TDC6KD-aJ_2gFo36-eDO5A';
 
     const initialCoordinates = [-77.083943, -12.0565];
+
+    const expansionFactor = 0.001; 
     const bounds = [
-        [-77.0884, -12.061398731476459],
-        [-77.07942532562103, -12.051447701183207]
+        [-77.0884 - expansionFactor, -12.061398731476459 - expansionFactor],
+        [-77.07942532562103 + expansionFactor, -12.051447701183207 + expansionFactor]
     ];
 
     console.log("--- CREANDO MAPA ---");
@@ -34,6 +36,7 @@ export function createMap() {
         maxBounds: bounds,
     });
     console.log("--- MAPA CREADO ---");
+
 
     return map;
 }
